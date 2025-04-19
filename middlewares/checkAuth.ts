@@ -1,5 +1,5 @@
-import jwt, { JwtPayload } from 'jsonwebtoken';
 import { NextFunction, Response } from 'express';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 import { AuthRequest } from '../types';
 

@@ -1,7 +1,7 @@
 import { Types } from 'mongoose';
 
-import CommentModel from '../models/Comment';
-import PostModel from '../models/Post';
+import CommentModel from '../models/comment';
+import PostModel from '../models/post';
 import { AppError } from '../utils/AppError';
 
 export const createComment = async (postId: string, userId: string, text: string) => {

@@ -1,9 +1,9 @@
 import express from 'express';
 
-import { PostController } from '../controllers';
+import { postController } from '../controllers';
 
 const router = express.Router();
 
-router.get('/tags', PostController.getLastTags);
+router.get('/tags', postController.getLastTags);
 
 export default router;

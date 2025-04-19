@@ -1,12 +1,12 @@
 import express from 'express';
 
-import { CommentController } from '../controllers';
+import { commentController } from '../controllers';
 import { validateRequest, checkAuth } from '../middlewares';
 import { commentCreateValidation } from '../validations/postValidation';
 
 const router = express.Router();
 
-router.patch('/:id', checkAuth, commentCreateValidation, validateRequest, CommentController.update);
-router.delete('/:id', checkAuth, CommentController.remove);
+router.patch('/:id', checkAuth, commentCreateValidation, validateRequest, commentController.update);
+router.delete('/:id', checkAuth, commentController.remove);
 
 export default router;

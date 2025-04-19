@@ -1,8 +1,8 @@
 import { SortOrder } from 'mongoose';
 
-import PostModel from '../models/Post';
-import { AppError } from '../utils/AppError';
+import PostModel from '../models/post';
 import { CreatePostInput } from './types';
+import { AppError } from '../utils/AppError';
 
 export const createPost = async (postData: CreatePostInput, userId: string) => {
   const post = new PostModel({
