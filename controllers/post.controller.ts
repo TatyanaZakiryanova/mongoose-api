@@ -14,7 +14,7 @@ import {
 export const create = async (req: CreatePostRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
-      throw new AppError('No access', 401);
+      throw new AppError('Unauthorized', 401);
     }
 
     const post = await createPost(req.body, req.userId);
@@ -52,7 +52,7 @@ export const getOne = async (req: Request<Params>, res: Response, next: NextFunc
 export const update = async (req: UpdateRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
-      throw new AppError('No access', 401);
+      throw new AppError('Unauthorized', 401);
     }
 
     const updated = await updatePost(req.params.id, req.userId, req.body);
@@ -66,7 +66,7 @@ export const update = async (req: UpdateRequest, res: Response, next: NextFuncti
 export const remove = async (req: DeleteRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
-      throw new AppError('No access', 401);
+      throw new AppError('Unauthorized', 401);
     }
 
     const result = await removePost(req.params.id, req.userId);

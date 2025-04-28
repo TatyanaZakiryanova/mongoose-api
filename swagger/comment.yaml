@@ -25,7 +25,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Comment'
         '401':
-          description: No access
+          description: Unauthorized
+        '403':
+          description: Access denied
         '404':
           description: Comment not found
         '500':
@@ -46,7 +48,9 @@ paths:
         '200':
           description: Successfully deleted the comment
         '401':
-          description: No access
+          description: Unauthorized
+        '403':
+          description: Access denied
         '404':
           description: Comment not found
         '500':

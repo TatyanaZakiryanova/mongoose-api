@@ -30,7 +30,7 @@ export const login = async (req: LoginRequest, res: Response, next: NextFunction
 export const getMe = async (req: MeRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
-      throw new AppError('No access', 401);
+      throw new AppError('Unauthorized', 401);
     }
 
     const cleanUser = await getUser(req.userId);

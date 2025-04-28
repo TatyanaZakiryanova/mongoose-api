@@ -67,7 +67,7 @@ export const getUser = async (userId: string) => {
   const user = await UserModel.findById(userId);
 
   if (!user) {
-    throw new AppError('User not found', 401);
+    throw new AppError('User not found', 404);
   }
 
   const { passwordHash, ...cleanUser } = user.toObject();

@@ -12,7 +12,7 @@ import {
 export const create = async (req: CreateCommentRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
-      throw new AppError('No access', 401);
+      throw new AppError('Unauthorized', 401);
     }
 
     const comment = await createComment(req.params.id, req.userId, req.body.text);
@@ -36,7 +36,7 @@ export const getPostComments = async (req: Request, res: Response, next: NextFun
 export const update = async (req: UpdateCommentRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
-      throw new AppError('No access', 401);
+      throw new AppError('Unauthorized', 401);
     }
 
     const comment = await updateComment(req.params.id, req.userId, req.body.text);
@@ -50,7 +50,7 @@ export const update = async (req: UpdateCommentRequest, res: Response, next: Nex
 export const remove = async (req: DeleteCommentRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
-      throw new AppError('No access', 401);
+      throw new AppError('Unauthorized', 401);
     }
 
     const result = await removeComment(req.params.id, req.userId);
