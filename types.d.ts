@@ -5,7 +5,7 @@ export interface AuthRequest extends Request {
   userId?: string;
 }
 
-export interface IUser {
+export interface IUser extends Document {
   fullName: string;
   email: string;
   passwordHash: string;
@@ -32,9 +32,4 @@ export interface IComment extends Document {
   user: Types.ObjectId | IUser;
   createdAt: Date;
   updatedAt: Date;
-}
-
-export interface GetAllQuery {
-  sort?: 'popular';
-  tag?: string;
 }

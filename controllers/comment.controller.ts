@@ -1,15 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { AuthRequest } from '../types';
 import { AppError } from '../utils/AppError';
+import { CreateCommentRequest, DeleteCommentRequest, UpdateCommentRequest } from './types';
 import {
   createComment,
   getPostCommentsService,
   removeComment,
   updateComment,
-} from '../services/commentService';
+} from '../services/comment.service';
 
-export const create = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const create = async (req: CreateCommentRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
       throw new AppError('No access', 401);
@@ -33,7 +33,7 @@ export const getPostComments = async (req: Request, res: Response, next: NextFun
   }
 };
 
-export const update = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const update = async (req: UpdateCommentRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
       throw new AppError('No access', 401);
@@ -47,7 +47,7 @@ export const update = async (req: AuthRequest, res: Response, next: NextFunction
   }
 };
 
-export const remove = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const remove = async (req: DeleteCommentRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
       throw new AppError('No access', 401);

@@ -5,9 +5,18 @@ export interface RegisterUserInput {
   avatarUrl?: string;
 }
 
+export interface LoginUserInput {
+  email: string;
+  password: string;
+}
+
 export interface CreatePostInput {
   title: string;
   text: string;
-  tags?: string[];
+  tags: string[];
   imageUrl?: string;
+}
+
+export interface CreateCommentInput {
+  text: string;
 }

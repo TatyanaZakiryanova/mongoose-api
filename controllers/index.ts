@@ -1,3 +1,3 @@
-export * as userController from './userController';
-export * as postController from './postController';
-export * as commentController from './commentController';
+export * as userController from './user.controller';
+export * as postController from './post.controller';
+export * as commentController from './comment.controller';

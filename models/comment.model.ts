@@ -21,6 +21,7 @@ const CommentSchema = new Schema<IComment>(
   },
   {
     timestamps: true,
+    versionKey: false,
   },
 );
 

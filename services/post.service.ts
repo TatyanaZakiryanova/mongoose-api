@@ -1,6 +1,6 @@
 import { SortOrder } from 'mongoose';
 
-import PostModel from '../models/post';
+import PostModel from '../models/post.model';
 import { CreatePostInput } from './types';
 import { AppError } from '../utils/AppError';
 

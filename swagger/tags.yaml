@@ -1,0 +1,22 @@
+paths:
+  /posts/tags:
+    get:
+      tags:
+        - Tags
+      summary: Get last tags used in posts
+      responses:
+        '200':
+          description: Successfully retrieved last tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    Tag:
+      type: string

@@ -1,0 +1,151 @@
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Authorization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginInput'
+      responses:
+        '200':
+          description: Authorization successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          description: Incorrect login or password
+        '500':
+          description: Internal server error
+
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Registration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterInput'
+      responses:
+        '201':
+          description: Registration successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '500':
+          description: Internal server error
+
+  /auth/me:
+    get:
+      tags:
+        - Auth
+      summary: Get current user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful user info retrieval
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        '401':
+          description: User not found
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    LoginInput:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+
+    RegisterInput:
+      type: object
+      required:
+        - email
+        - password
+        - fullName
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+        fullName:
+          type: string
+        avatarUrl:
+          type: string
+
+    AuthResponse:
+      type: object
+      required:
+        - _id
+        - fullName
+        - email
+        - token
+        - createdAt
+        - updatedAt
+      properties:
+        _id:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+          format: email
+        avatarUrl:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        token:
+          type: string
+
+    UserInfo:
+      type: object
+      required:
+        - _id
+        - fullName
+        - email
+        - createdAt
+        - updatedAt
+      properties:
+        _id:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+          format: email
+        avatarUrl:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time

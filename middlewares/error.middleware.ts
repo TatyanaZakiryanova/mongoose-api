@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { AppError } from '../utils/AppError';
 
-export const errorHandler = (err: unknown, req: Request, res: Response, next: NextFunction) => {
+export const errorHandler = (err: unknown, _req: Request, res: Response, _next: NextFunction) => {
   if (err instanceof AppError) {
     console.warn('Handled error:', err.message);
     res.status(err.statusCode).json({

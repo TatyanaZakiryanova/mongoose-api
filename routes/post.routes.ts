@@ -2,7 +2,7 @@ import express from 'express';
 
 import { commentController, postController } from '../controllers';
 import { validateRequest, checkAuth } from '../middlewares';
-import { commentCreateValidation, postCreateValidation } from '../validations/postValidation';
+import { commentCreateValidation, postCreateValidation } from '../validators/post.validator';
 
 const router = express.Router();
 

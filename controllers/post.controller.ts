@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { AuthRequest, GetAllQuery } from '../types';
+import { CreatePostRequest, DeleteRequest, GetAllQuery, Params, UpdateRequest } from './types';
 import { AppError } from '../utils/AppError';
 import {
   createPost,
@@ -9,9 +9,9 @@ import {
   getOnePost,
   removePost,
   updatePost,
-} from '../services/postService';
+} from '../services/post.service';
 
-export const create = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const create = async (req: CreatePostRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
       throw new AppError('No access', 401);
@@ -39,7 +39,7 @@ export const getAll = async (
   }
 };
 
-export const getOne = async (req: Request, res: Response, next: NextFunction) => {
+export const getOne = async (req: Request<Params>, res: Response, next: NextFunction) => {
   try {
     const post = await getOnePost(req.params.id);
 
@@ -49,7 +49,7 @@ export const getOne = async (req: Request, res: Response, next: NextFunction) =>
   }
 };
 
-export const update = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const update = async (req: UpdateRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
       throw new AppError('No access', 401);
@@ -63,7 +63,7 @@ export const update = async (req: AuthRequest, res: Response, next: NextFunction
   }
 };
 
-export const remove = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const remove = async (req: DeleteRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
       throw new AppError('No access', 401);
@@ -77,7 +77,7 @@ export const remove = async (req: AuthRequest, res: Response, next: NextFunction
   }
 };
 
-export const getLastTags = async (_: Request, res: Response, next: NextFunction) => {
+export const getLastTags = async (_req: Request, res: Response, next: NextFunction) => {
   try {
     const tags = await getLastTagsService();
 

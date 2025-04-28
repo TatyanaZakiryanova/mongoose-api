@@ -1,10 +1,10 @@
 import { Response, NextFunction } from 'express';
 
-import { AuthRequest } from '../types';
 import { AppError } from '../utils/AppError';
-import { getUser, loginUser, registerUser } from '../services/userService';
+import { getUser, loginUser, registerUser } from '../services/user.service';
+import { LoginRequest, MeRequest, RegisterRequest } from './types';
 
-export const register = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const register = async (req: RegisterRequest, res: Response, next: NextFunction) => {
   try {
     const { token, ...cleanUser } = await registerUser(req.body);
 
@@ -14,9 +14,9 @@ export const register = async (req: AuthRequest, res: Response, next: NextFuncti
   }
 };
 
-export const login = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const login = async (req: LoginRequest, res: Response, next: NextFunction) => {
   try {
-    const { token, ...cleanUser } = await loginUser(req.body.email, req.body.password);
+    const { token, ...cleanUser } = await loginUser(req.body);
 
     res.status(200).json({
       ...cleanUser,
@@ -27,7 +27,7 @@ export const login = async (req: AuthRequest, res: Response, next: NextFunction)
   }
 };
 
-export const getMe = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const getMe = async (req: MeRequest, res: Response, next: NextFunction) => {
   try {
     if (!req.userId) {
       throw new AppError('No access', 401);

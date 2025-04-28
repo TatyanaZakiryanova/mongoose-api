@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
-import UserModel from '../models/user';
-import { RegisterUserInput } from './types';
+import UserModel from '../models/user.model';
+import { LoginUserInput, RegisterUserInput } from './types';
 import { AppError } from '../utils/AppError';
 
 export const registerUser = async (userData: RegisterUserInput) => {
@@ -32,7 +32,7 @@ export const registerUser = async (userData: RegisterUserInput) => {
   return { ...cleanUser, token };
 };
 
-export const loginUser = async (email: string, password: string) => {
+export const loginUser = async ({ email, password }: LoginUserInput) => {
   const user = await UserModel.findOne({ email });
 
   if (!user) {

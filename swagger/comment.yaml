@@ -1,0 +1,88 @@
+paths:
+  /comments/{id}:
+    patch:
+      tags:
+        - Comments
+      summary: Update a comment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the comment to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentInput'
+      responses:
+        '200':
+          description: Successfully updated the comment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '401':
+          description: No access
+        '404':
+          description: Comment not found
+        '500':
+          description: Internal server error
+
+    delete:
+      tags:
+        - Comments
+      summary: Delete a comment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the comment to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully deleted the comment
+        '401':
+          description: No access
+        '404':
+          description: Comment not found
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    CommentInput:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+
+    Comment:
+      type: object
+      required:
+        - text
+        - post
+        - user
+        - _id
+        - createdAt
+        - updatedAt
+      properties:
+        text:
+          type: string
+        post:
+          type: string
+        user:
+          type: string
+        _id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
