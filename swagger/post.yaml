@@ -78,7 +78,7 @@ paths:
     patch:
       tags:
         - Posts
-      summary: Update post
+      summary: Update a post
       security:
         - bearerAuth: []
       parameters:
