@@ -2,15 +2,13 @@ import { NextFunction, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 import { AuthRequest } from '../types';
+import { AppError } from '../utils/AppError';
 
 export default (req: AuthRequest, res: Response, next: NextFunction): void => {
   const token = (req.headers.authorization || '').replace(/Bearer\s?/, '');
 
   if (!token) {
-    res.status(401).json({
-      message: 'No token provided',
-    });
-    return;
+    throw new AppError('No token provided', 401);
   }
 
   try {
@@ -18,9 +16,6 @@ export default (req: AuthRequest, res: Response, next: NextFunction): void => {
     req.userId = decoded._id;
     next();
   } catch (err) {
-    res.status(401).json({
-      message: 'Invalid token',
-    });
-    return;
+    next(new AppError('Invalid token', 401));
   }
 };

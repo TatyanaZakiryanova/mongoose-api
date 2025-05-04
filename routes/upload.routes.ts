@@ -4,6 +4,8 @@ import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 
 import { checkAuth } from '../middlewares';
+import { AppError } from '../utils/AppError';
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -27,23 +29,19 @@ router.post(
   '/upload',
   checkAuth,
   upload.single('image'),
-  (req: Request, res: Response) => {
-    if (!req.file || !('path' in req.file)) {
-      res.status(400).json({ message: 'No file uploaded' });
-      return;
-    }
+  (req: Request, res: Response, next: NextFunction) => {
+    try {
+      if (!req.file || !('path' in req.file)) {
+        throw new AppError('No file uploaded', 400);
+      }
 
-    const file = req.file as Express.Multer.File & { path: string };
+      const file = req.file as Express.Multer.File & { path: string };
 
-    res.json({
-      url: file.path,
-    });
-  },
-  (err: MulterError | Error, _: Request, res: Response, __: NextFunction) => {
-    if (err instanceof multer.MulterError) {
-      res.status(400).json({ message: err.message });
-    } else if (err) {
-      res.status(500).json({ message: 'Server error' });
+      res.json({
+        url: file.path,
+      });
+    } catch (err) {
+      next(err);
     }
   },
 );
