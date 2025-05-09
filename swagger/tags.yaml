@@ -1,5 +1,5 @@
 paths:
-  /posts/tags:
+  /tags:
     get:
       tags:
         - Tags
