@@ -4,13 +4,15 @@ paths:
       tags:
         - Comments
       summary: Update a comment
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
           required: true
-          description: The ID of the comment to update
           schema:
             type: string
+          description: The ID of the comment to update
       requestBody:
         required: true
         content:
@@ -25,36 +27,47 @@ paths:
               schema:
                 $ref: '#/components/schemas/Comment'
         '401':
-          description: Unauthorized
+          $ref: '#/components/responses/UnauthorizedError'
         '403':
-          description: Access denied
+          $ref: '#/components/responses/AccessError'
         '404':
-          description: Comment not found
+          $ref: '#/components/responses/CommentNotFoundError'
         '500':
-          description: Internal server error
+          $ref: '#/components/responses/InternalServerError'
 
     delete:
       tags:
         - Comments
       summary: Delete a comment
+      security:
+        - bearerAuth: []
       parameters:
         - name: id
           in: path
           required: true
-          description: The ID of the comment to delete
           schema:
             type: string
+          description: The ID of the comment to delete
       responses:
         '200':
           description: Successfully deleted the comment
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: Comment deleted successfully
         '401':
-          description: Unauthorized
+          $ref: '#/components/responses/UnauthorizedError'
         '403':
-          description: Access denied
+          $ref: '#/components/responses/AccessError'
         '404':
-          description: Comment not found
+          $ref: '#/components/responses/CommentNotFoundError'
         '500':
-          description: Internal server error
+          $ref: '#/components/responses/InternalServerError'
 
 components:
   schemas:
@@ -90,3 +103,54 @@ components:
         updatedAt:
           type: string
           format: date-time
+
+    ErrorResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  responses:
+    UnauthorizedError:
+      description: Unauthorized (token missing or invalid)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: No token provided
+
+    AccessError:
+      description: Access denied
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: Access denied
+
+    CommentNotFoundError:
+      description: Comment not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: Comment not found
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: Internal server error

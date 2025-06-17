@@ -18,9 +18,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
         '401':
-          description: Incorrect login or password
+          $ref: '#/components/responses/AuthorizationError'
         '500':
-          description: Internal server error
+          $ref: '#/components/responses/InternalServerError'
 
   /auth/register:
     post:
@@ -41,7 +41,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AuthResponse'
         '500':
-          description: Internal server error
+          $ref: '#/components/responses/InternalServerError'
 
   /auth/me:
     get:
@@ -56,13 +56,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserInfo'
+                $ref: '#/components/schemas/UserInfoResponse'
         '401':
-          description: Unauthorized
+          $ref: '#/components/responses/UnauthorizedError'
         '404':
-          description: User not found
+          $ref: '#/components/responses/NotFoundError'
         '500':
-          description: Internal server error
+          $ref: '#/components/responses/InternalServerError'
 
 components:
   schemas:
@@ -106,6 +106,7 @@ components:
         - token
         - createdAt
         - updatedAt
+        - __v
       properties:
         _id:
           type: string
@@ -123,10 +124,12 @@ components:
         updatedAt:
           type: string
           format: date-time
+        __v:
+          type: integer
         token:
           type: string
 
-    UserInfo:
+    UserInfoResponse:
       type: object
       required:
         - _id
@@ -134,6 +137,7 @@ components:
         - email
         - createdAt
         - updatedAt
+        - __v
       properties:
         _id:
           type: string
@@ -151,3 +155,56 @@ components:
         updatedAt:
           type: string
           format: date-time
+        __v:
+          type: integer
+
+    ErrorResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  responses:
+    UnauthorizedError:
+      description: Unauthorized (token missing or invalid)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: No token provided
+
+    AuthorizationError:
+      description: Incorrect login or password
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: Incorrect login or password
+
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: Resource not found
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            message: Internal server error

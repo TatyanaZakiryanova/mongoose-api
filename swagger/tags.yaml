@@ -15,8 +15,22 @@ paths:
                   type: string
         '500':
           description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                message: Internal server error
 
 components:
   schemas:
     Tag:
       type: string
+
+    ErrorResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
