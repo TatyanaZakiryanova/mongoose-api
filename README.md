@@ -1,50 +1,49 @@
 # Blog backend API
 
-REST API для блога на Express и TS.
+RESTful API for a blog, built with Express and TypeScript.
 
-[Документация API](https://blog-backend-vrgr.onrender.com/api-docs/)
+[README на русском](./README.ru.md)
 
-[Frontend для этого API](https://blogaboutit.netlify.app/)
+[API Documentation](https://blog-backend-vrgr.onrender.com/api-docs/)
 
-## Technologies Used
+## Technologies
 
-- Node.js + Express
-- TypeScript
-- MongoDB (mongoose)
-- JWT - авторизация и аутентификация
-- bcrypt - хеширование паролей
-- Multer + Cloudinary - загрузка изображений
-- CORS, dotenv - настройка окружения
-- express-validator — валидация входящих данных
-- Render - деплой
-- Swagger - документация
+- **Node.js + Express**
+- **TypeScript**
+- **MongoDB** (mongoose)
+- **JWT** - authentication and authorization
+- **bcrypt** - password hashing
+- **Multer + Cloudinary** - image uploading
+- **CORS, dotenv** - environment configuration
+- **express-validator** — request data validation
+- **Render** - deployment
+- **Swagger** - API documentation
 
 ## Features
 
-- Регистрация и авторизация пользователей
-- CRUD для постов
-- CRUD для комментариев
-- Загрузка изображений (Cloudinary)
-- Защита маршрутов (middleware checkAuth)
-- Валидация данных (express-validator)
-- Централизованная обработка ошибок (errorHandler)
+- User registration and authentication using **JWT tokens**
+- **CRUD operations** for posts and comments
+- Image upload to **Cloudinary**
+- Middleware for **route protection** (checkAuth)
+- Data validation with **express-validator**
+- Centralized error handling (errorHandler)
 
 ## How to start project
 
 in the project directory enter:
 
-```js
+```bash
 npm install
 ```
 
 create .env file in the root directory and compile the project:
 
-```js
+```bash
 npm run build
 ```
 
 start the server:
 
-```js
+```bash
 npm start
 ```
