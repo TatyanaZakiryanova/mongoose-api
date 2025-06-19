@@ -75,9 +75,11 @@ components:
         email:
           type: string
           format: email
+          example: user@example.com
         password:
           type: string
           format: password
+          example: 'password12345'
 
     RegisterInput:
       type: object

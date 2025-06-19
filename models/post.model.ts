@@ -33,7 +33,6 @@ const PostSchema = new Schema<IPost>(
   },
   {
     timestamps: true,
-    versionKey: false,
   },
 );
 
