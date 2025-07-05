@@ -1,12 +1,14 @@
-# Blog backend API
+# Mongoose API
 
-RESTful API for a blog, built with Express and TypeScript.
+RESTful API for a blog, built with Express, Mongoose and TypeScript.
 
-[README на русском](./README.ru.md)
+⚠️ _Please note: free Render server may take up to 1 minute to wake up on first request._
 
-[API Documentation](https://blog-backend-vrgr.onrender.com/api-docs/)
+🌎 [README на русском](./README.ru.md)
 
-## Technologies
+📄 [Swagger docs](https://blog-backend-vrgr.onrender.com/api-docs/)
+
+## 🛠️ Technologies
 
 - **Node.js + Express**
 - **TypeScript**
@@ -19,7 +21,7 @@ RESTful API for a blog, built with Express and TypeScript.
 - **Render** - deployment
 - **Swagger** - API documentation
 
-## Features
+## 💻 Features
 
 - User registration and authentication using **JWT tokens**
 - **CRUD operations** for posts and comments
@@ -27,8 +29,30 @@ RESTful API for a blog, built with Express and TypeScript.
 - Middleware for **route protection** (checkAuth)
 - Data validation with **express-validator**
 - Centralized error handling (errorHandler)
+- **Swagger-based** API docs
+- Hosted via **Render**
 
-## How to start project
+## 📁 Architecture
+
+```bash
+├── config/
+├── controllers/
+├── middlewares/
+├── models/
+├── routes/
+├── services/
+├── swagger/
+├── utils/
+├── validators/
+```
+
+## 🚀 How to start project
+
+clone the repository:
+
+```bash
+git clone
+```
 
 in the project directory enter:
 
@@ -36,7 +60,7 @@ in the project directory enter:
 npm install
 ```
 
-create .env file in the root directory and compile the project:
+create **.env** file in the root directory and compile the project:
 
 ```bash
 npm run build

@@ -1,10 +1,10 @@
-# Blog backend API
+# Mongoose API
 
-REST API для блога на Express и TS.
+REST API для блога на Express, Mongoose и TypeScript.
 
-[API документация](https://blog-backend-vrgr.onrender.com/api-docs/)
+📄 [API документация](https://blog-backend-vrgr.onrender.com/api-docs/)
 
-## Technologies
+## 🛠️ Technologies
 
 - **Node.js + Express**
 - **TypeScript**
@@ -17,16 +17,38 @@ REST API для блога на Express и TS.
 - **Render** - деплой
 - **Swagger** - документация
 
-## Features
+## 💻 Features
 
 - Регистрация и авторизация пользователей
 - **CRUD** для постов и комментариев
-- Загрузка изображений (Cloudinary)
-- Защита маршрутов (middleware checkAuth)
-- Валидация данных (express-validator)
-- Централизованная обработка ошибок (errorHandler)
+- Загрузка изображений - **Multer + Cloudinary**
+- Защита маршрутов - middleware checkAuth
+- Валидация данных - **express-validator**
+- Централизованная обработка ошибок
+- **Swagger** документация
+- **Render** - деплой
 
-## How to start project
+## 📁 Architecture
+
+```bash
+├── config/
+├── controllers/
+├── middlewares/
+├── models/
+├── routes/
+├── services/
+├── swagger/
+├── utils/
+├── validators/
+```
+
+## 🚀 How to start project
+
+clone the repository:
+
+```bash
+git clone
+```
 
 in the project directory enter:
 
