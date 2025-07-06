@@ -2,7 +2,7 @@
 
 REST API для блога на Express, Mongoose и TypeScript.
 
-📄 [API документация](https://blog-backend-vrgr.onrender.com/api-docs/)
+[Swagger документация](https://blog-backend-vrgr.onrender.com/api-docs/)
 
 ## 🛠️ Technologies
 
@@ -42,7 +42,7 @@ REST API для блога на Express, Mongoose и TypeScript.
 ├── validators/
 ```
 
-## 🚀 How to start project
+## 🪄 How to start project
 
 clone the repository:
 
@@ -56,7 +56,7 @@ in the project directory enter:
 npm install
 ```
 
-create .env file in the root directory and compile the project:
+create **.env** file with _.env.example_ in the root directory and compile the project:
 
 ```bash
 npm run build

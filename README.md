@@ -4,9 +4,9 @@ RESTful API for a blog, built with Express, Mongoose and TypeScript.
 
 ⚠️ _Please note: free Render server may take up to 1 minute to wake up on first request._
 
-🌎 [README на русском](./README.ru.md)
+[README на русском](./README.ru.md)
 
-📄 [Swagger docs](https://blog-backend-vrgr.onrender.com/api-docs/)
+[Swagger docs](https://blog-backend-vrgr.onrender.com/api-docs/)
 
 ## 🛠️ Technologies
 
@@ -46,7 +46,7 @@ RESTful API for a blog, built with Express, Mongoose and TypeScript.
 ├── validators/
 ```
 
-## 🚀 How to start project
+## 🪄 How to start project
 
 clone the repository:
 
@@ -60,7 +60,7 @@ in the project directory enter:
 npm install
 ```
 
-create **.env** file in the root directory and compile the project:
+create **.env** file with _.env.example_ in the root directory and compile the project:
 
 ```bash
 npm run build
